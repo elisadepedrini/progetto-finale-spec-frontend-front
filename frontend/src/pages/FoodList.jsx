@@ -4,7 +4,10 @@ import { Link } from "react-router"
 export default function FoodList() {
 
     const [foods, setFoods] = useState([])
+    const [search, setSearch] = useState("")
+    const [categorySearch, setCategorySearch] = useState("")
 
+    // Chiamata ai dati nel backend
     useEffect(() => {
         async function fetchFood() {
             try {
@@ -26,17 +29,53 @@ export default function FoodList() {
         fetchFood()
     }, [])
 
+    // Array filtrato per ricerca per titolo, per categoria
+    const filteredFoods =
+    foods.filter(f => f.title.toLowerCase().includes(search.toLowerCase()) &&
+    (categorySearch === "" || f.category === categorySearch))
+    
+    // Array di categorie
+    const categories = foods.reduce((acc, curr) => {
+        if (!acc.includes(curr.category)) {
+            acc.push(curr.category)
+        }
+        return acc
+    }, [])
+
     return(
         <>
             <h1>Lista degli alimenti</h1>
 
+            <div className="container row">
+                <div className="col">
+                    <label className="form-label">Cerca alimento per titolo</label>
+                    <input className="form-control w-25"
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Cerca per titolo"
+                    />
+                </div>
+
+                <div>
+                    <label className="form-label">Cerca alimento per categoria</label>
+                    <select className="form-select w-25 col" value={categorySearch} onChange={(e) => setCategorySearch(e.target.value)}>
+                        <option value="">Seleziona una categoria</option>
+                        {categories.map(c => (
+                            <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
+                        ))}
+                    </select>
+                </div>
+
+            </div>
+
             {/* Lista degli alimenti con title e category */}
             <div className="container">
                 <div className="row g-5">
-                    {foods.map(f => (
+                    {filteredFoods.map(f => (
                         <div key={f.id} className="col-4">
                             <div className="card">
-                                <div className="card-header p-4">{f.category}</div>
+                                <div className="card-header p-4">{f.category.charAt(0).toUpperCase() + f.category.slice(1)}</div>
                                 <div className="card-body">
                                     <h4 className="card-title">{f.title}</h4>
                                     
