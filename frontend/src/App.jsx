@@ -4,6 +4,7 @@ import FoodList from "./pages/FoodList"
 import FoodDetail from "./pages/FoodDetail"
 import FavoriteFood from "./pages/FavoriteFood"
 import CompareFood from "./pages/CompareFood"
+import NotFound from "./pages/NotFound"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/food/:id" element={<FoodDetail/>}/>
           <Route path="/preferiti" element={<FavoriteFood/>}/>
           <Route path="/confronta" element={<CompareFood/>}/>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
