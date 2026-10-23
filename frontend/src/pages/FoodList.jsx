@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router"
+import FoodCardList from "../components/FoodCardList"
 
 export default function FoodList() {
 
@@ -98,23 +98,9 @@ export default function FoodList() {
             </div>
 
             {/* Lista degli alimenti con title e category */}
-            <div className="container">
-                <div className="row g-5">
-                    {sortedFoods.map(f => (
-                        <div key={f.id} className="col-4">
-                            <div className="card">
-                                <div className="card-header p-4">{f.category.charAt(0).toUpperCase() + f.category.slice(1)}</div>
-                                <div className="card-body">
-                                    <h4 className="card-title">{f.title}</h4>
-                                    
-                                    <Link to={`/food/${f.id}`} className="btn btn-primary">Dettagli</Link>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                    }
-                </div>
-            </div>
+            <FoodCardList 
+            foodList={sortedFoods}
+            />
         </>
     )
 }
