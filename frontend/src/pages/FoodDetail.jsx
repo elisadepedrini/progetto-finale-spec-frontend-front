@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router"
+import { useFavorites } from "../contexts/FavoritesContext";
 
 export default function FoodDetail() {
 
     const {id} = useParams()
     const [singleFood, setSingleFood] = useState()
     const navigate = useNavigate()
-    
+    const { favoriteFoods, toggleFavorite } = useFavorites()
+
     useEffect(() => {
         async function fetchSingleFood() {
             try {
@@ -23,7 +25,7 @@ export default function FoodDetail() {
     
             } catch(error) {
                 console.error(error)
-                navigate("not-found")
+                navigate("/not-found")
             }
         }
 
@@ -33,6 +35,7 @@ export default function FoodDetail() {
     
     if (!singleFood) {
         return <h4>Caricamento...</h4>}
+
 
     return (
         <>
@@ -83,14 +86,13 @@ export default function FoodDetail() {
                             </tbody>
                         </table>
 
-                        <button className="btn btn-outline-secondary btn-lg px-4 w-100 w-sm-auto">
-                            <i className="bi bi-heart me-1"></i>
-                             Aggiungi ai preferiti
+                        <button onClick={() => toggleFavorite({ id: singleFood.id, title: singleFood.title, category: singleFood.category })} className="btn btn-outline-secondary btn-lg px-4 w-100 w-sm-auto">
+                             { favoriteFoods.some(el => el.id === singleFood.id) ?
+                             <> <i className="bi bi-heart-fill me-1"></i> Rimuovi dai preferiti </> :
+                             <> <i className="bi bi-heart me-1"></i> Aggiungi ai preferiti </>}
                         </button>
 
-
                     </div>
-
                 </div>
             </div>
 
