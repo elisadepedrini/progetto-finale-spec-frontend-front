@@ -47,7 +47,7 @@ export default function FoodList() {
 
 
 
-    // Array filtrato per ricerca per titolo, per categoria
+    // Array filtrato per ricerca, per titolo, per categoria
     const filteredFoods =
     foods.filter(f => f.title.toLowerCase().includes(search.toLowerCase()) &&
     (categorySearch === "" || f.category === categorySearch))
@@ -117,9 +117,15 @@ export default function FoodList() {
         </div>
 
         {/* Lista degli alimenti con title e category */}
-        <FoodCardList
-        foodList={sortedFoods}
-        />
+        {(sortedFoods.length === 0) ? (
+                <div className="container text-center text-muted my-5">
+                    <p>Nessun alimento trovato!</p>
+                </div>
+        )
+         : (
+            
+            <FoodCardList foodList={sortedFoods} />
+        )}
     </>
 )
 }
