@@ -94,9 +94,11 @@ export default function CompareFood() {
 
     return (
         <>
-            <h2>Comparatore di alimenti</h2>
+        <div className="container py-4">
 
-            <div className="d-flex justify-content-around">
+            <h1>Comparatore di alimenti</h1>
+
+            <div className="d-flex justify-content-around filters-box p-4 mb-5">
                 <div>
                     <label className="form-label">Seleziona il primo alimento da comparare</label>
                     <select className="form-select w-75" value={firstId} onChange={(e) => setFirstId(e.target.value)}>
@@ -122,62 +124,66 @@ export default function CompareFood() {
 
             {(firstFood && secondFood) ? (
                 <div className="container my-4">
-                    <table className="table table-striped align-middle text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">
-                                    <h2 className="h4 mb-1">{firstFood.title}</h2>
-                                    <span className="text-uppercase text-muted small">{firstFood.category}</span>
-                                </th>
-                                <th scope="col">
-                                    <h2 className="h4 mb-1">{secondFood.title}</h2>
-                                    <span className="text-uppercase text-muted small">{secondFood.category}</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" className="text-start">Origine</th>
-                                <td>{firstFood.origin}</td>
-                                <td>{secondFood.origin}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" className="text-start">Prezzo al kg</th>
-                                <td>{firstFood.pricePerKg} €</td>
-                                <td>{secondFood.pricePerKg} €</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" className="text-start">Calorie (100 g)</th>
-                                <td>{firstFood.calories} kcal</td>
-                                <td>{secondFood.calories} kcal</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" className="text-start">Grassi (100 g)</th>
-                                <td>{firstFood.fat} g</td>
-                                <td>{secondFood.fat} g</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" className="text-start">Vegano</th>
-                                <td><i className={firstFood.vegan ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
-                                <td><i className={secondFood.vegan ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" className="text-start">Senza glutine</th>
-                                <td><i className={firstFood.glutenFree ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
-                                <td><i className={secondFood.glutenFree ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" className="text-start">Descrizione</th>
-                                <td className="small text-secondary">{firstFood.description}</td>
-                                <td className="small text-secondary">{secondFood.description}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="compare-box">
+                        <table className="table compare-table table-striped align-middle text-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">
+                                        <h2 className="h4 mb-1">{firstFood.title}</h2>
+                                        <span className="text-uppercase text-muted small">{firstFood.category}</span>
+                                    </th>
+                                    <th scope="col">
+                                        <h2 className="h4 mb-1">{secondFood.title}</h2>
+                                        <span className="text-uppercase text-muted small">{secondFood.category}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" className="text-start">Origine</th>
+                                    <td>{firstFood.origin}</td>
+                                    <td>{secondFood.origin}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="text-start">Prezzo al kg</th>
+                                    <td>{firstFood.pricePerKg} €</td>
+                                    <td>{secondFood.pricePerKg} €</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="text-start">Calorie (100 g)</th>
+                                    <td>{firstFood.calories} kcal</td>
+                                    <td>{secondFood.calories} kcal</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="text-start">Grassi (100 g)</th>
+                                    <td>{firstFood.fat} g</td>
+                                    <td>{secondFood.fat} g</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="text-start">Vegano</th>
+                                    <td><i className={firstFood.vegan ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
+                                    <td><i className={secondFood.vegan ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="text-start">Senza glutine</th>
+                                    <td><i className={firstFood.glutenFree ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
+                                    <td><i className={secondFood.glutenFree ? "bi bi-check2" : "bi bi-x-lg"}></i></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="text-start">Descrizione</th>
+                                    <td className="small text-secondary">{firstFood.description}</td>
+                                    <td className="small text-secondary">{secondFood.description}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             ) : (
                 <p className="text-center text-muted my-5">Seleziona due alimenti per confrontarli.</p>
             )}
+
+        </div>
 
 
         </>

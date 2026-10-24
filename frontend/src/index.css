@@ -1,2 +1,183 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import 'bootstrap-icons/font/bootstrap-icons.css'
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
+:root {
+    --pink-50: #fff8f0;
+    --pink-100: #ffe8d1;
+    --pink-200: #ffd0a1;
+    --pink-400: #ff9f45;
+    --pink-500: #f76707;
+    --pink-600: #d9480f;
+    --ink: #4a2f1c;
+}
+
+/* Pulsante preferiti */
+.btn-favorite {
+    --bs-btn-color: var(--pink-600);
+    --bs-btn-border-color: var(--pink-500);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--pink-500);
+    --bs-btn-hover-border-color: var(--pink-500);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--pink-600);
+    --bs-btn-active-border-color: var(--pink-600);
+    border-radius: 50rem;
+}
+
+body {
+    background-color: var(--pink-50);
+    color: var(--ink);
+    margin-bottom: 4rem;
+}
+
+h1 {
+    color: var(--pink-600);
+    font-weight: 700;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff !important;
+    border-bottom: 1px solid var(--pink-200);
+}
+
+.navbar .nav-link {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--pink-600);
+}
+
+/* Bottoni */
+.btn-primary {
+    --bs-btn-bg: var(--pink-500);
+    --bs-btn-border-color: var(--pink-500);
+    --bs-btn-hover-bg: var(--pink-600);
+    --bs-btn-hover-border-color: var(--pink-600);
+    --bs-btn-active-bg: var(--pink-600);
+    --bs-btn-active-border-color: var(--pink-600);
+    --bs-btn-focus-shadow-rgb: 230, 73, 128;
+    border-radius: 0.5rem;
+}
+
+/* Input */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--pink-400);
+    box-shadow: 0 0 0 0.25rem rgba(230, 73, 128, 0.25);
+}
+
+/* Filtri */
+.filters-box {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 14px rgba(214, 51, 108, 0.1);
+}
+
+/* Card */
+.card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 4px 14px rgba(214, 51, 108, 0.12);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(214, 51, 108, 0.2);
+}
+
+.card-header {
+    background-color: var(--pink-100);
+    border-bottom: 0;
+    color: var(--pink-600);
+    font-weight: 600;
+}
+
+.card-header i {
+    color: var(--pink-500);
+}
+
+.card-title {
+    color: var(--ink);
+}
+
+
+/* Comparatore */
+.compare-box {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 14px rgba(214, 51, 108, 0.12);
+    overflow: hidden;
+}
+
+
+/* Intestazione con i due alimenti */
+.compare-table thead th {
+    background-color: var(--pink-100);
+    color: var(--pink-600);
+    border-bottom: 2px solid var(--pink-200);
+    padding: 1.25rem 1rem;
+}
+
+/* Righe alternate */
+.compare-table {
+    --bs-table-striped-bg: var(--pink-50);
+}
+
+/* Etichette della prima colonna */
+.compare-table tbody th {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+/* Icone vero/falso */
+.compare-table .bi-check2 {
+    color: #2f9e44;
+    font-size: 1.3rem;
+}
+
+.compare-table .bi-x-lg {
+    color: var(--pink-500);
+}
+
+
+/* Pagina di dettaglio */
+.detail-box {
+    background-color: #fff;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 14px rgba(214, 51, 108, 0.12);
+}
+
+.detail-category {
+    color: var(--pink-500);
+    letter-spacing: 0.08em;
+}
+
+.detail-price {
+    color: var(--pink-600);
+}
+
+.detail-table {
+    --bs-table-striped-bg: var(--pink-50);
+}
+
+.detail-table thead th {
+    background-color: var(--pink-100);
+    color: var(--pink-600);
+    border-bottom: 2px solid var(--pink-200);
+}
+
+.detail-table .bi-check2 {
+    color: #2f9e44;
+    font-size: 1.3rem;
+}
+
+.detail-table .bi-x-lg {
+    color: var(--pink-500);
+}

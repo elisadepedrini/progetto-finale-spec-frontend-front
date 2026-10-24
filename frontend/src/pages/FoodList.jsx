@@ -56,51 +56,55 @@ export default function FoodList() {
         
 
     return(
-        <>
-            <h1>Lista degli alimenti</h1>
+    <>
+        <div className="container py-4">
+            <h1 className="mb-4">Lista degli alimenti</h1>
 
-            <div className="container row">
-                <div className="col">
-                    <label className="form-label">Cerca alimento per titolo</label>
-                    <input className="form-control w-25"
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Cerca per titolo"
-                    />
-                </div>
+            <div className="filters-box p-4 mb-5">
+                <div className="row g-3">
+                    <div className="col-lg-3">
+                        <label className="form-label">Cerca per titolo</label>
+                        <input className="form-control"
+                        type="text"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Es. Mela"
+                        />
+                    </div>
 
-                <div>
-                    <label className="form-label">Cerca alimento per categoria</label>
-                    <select className="form-select w-25 col" value={categorySearch} onChange={(e) => setCategorySearch(e.target.value)}>
-                        <option value="">Seleziona una categoria</option>
-                        {categories.map(c => (
-                            <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
-                        ))}
-                    </select>
-                </div>
-                
-                <div>
-                    <label className="form-label">Ordina per</label>
-                    <select className="form-select w-25" value={sortField} onChange={(e) => setSortField(e.target.value)}>
-                        <option value="title">Titolo</option>
-                        <option value="category">Categoria</option>
-                    </select>
-                </div>
+                    <div className="col-lg-3">
+                        <label className="form-label">Categoria</label>
+                        <select className="form-select" value={categorySearch} onChange={(e) => setCategorySearch(e.target.value)}>
+                            <option value="">Tutte le categorie</option>
+                            {categories.map(c => (
+                                <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
+                            ))}
+                        </select>
+                    </div>
 
-                <div>
-                    <label className="form-label">Verso</label>
-                    <select className="form-select w-25" value={sortDirection} onChange={(e) => setSortDirection(Number(e.target.value))}>
-                        <option value="1">A-Z</option>
-                        <option value="-1">Z-A</option>
-                    </select>
+                    <div className="col-lg-3">
+                        <label className="form-label">Ordina per</label>
+                        <select className="form-select" value={sortField} onChange={(e) => setSortField(e.target.value)}>
+                            <option value="title">Titolo</option>
+                            <option value="category">Categoria</option>
+                        </select>
+                    </div>
+
+                    <div className="col-lg-3">
+                        <label className="form-label">Verso</label>
+                        <select className="form-select" value={sortDirection} onChange={(e) => setSortDirection(Number(e.target.value))}>
+                            <option value="1">A-Z</option>
+                            <option value="-1">Z-A</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            {/* Lista degli alimenti con title e category */}
-            <FoodCardList 
-            foodList={sortedFoods}
-            />
-        </>
-    )
+        {/* Lista degli alimenti con title e category */}
+        <FoodCardList
+        foodList={sortedFoods}
+        />
+    </>
+)
 }

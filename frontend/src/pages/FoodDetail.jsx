@@ -42,55 +42,57 @@ export default function FoodDetail() {
             <div className="container my-5">
                 <div className="row g-4 justify-content-center">
                     <div className="col-12 col-md-6 col-lg-5 d-flex flex-column justify-content-center">
-                        <span className="text-uppercase text-muted small fw-bold mb-2">{singleFood.category}</span>
+                        <div className="detail-box p-4">
+                            <span className=" detail-category text-uppercase text-muted small fw-bold mb-2">{singleFood.category}</span>
 
-                        <h1 className="fw-bold text-dark mb-2">{singleFood.title}</h1>
+                            <h1 className="mb-2">{singleFood.title}</h1>
 
-                        <span className="text-muted small ms-2"><i className="bi bi-flag-fill me-1"></i>{singleFood.origin}</span>
+                            <span className="text-muted small"><i className="bi bi-flag-fill me-1"></i>{singleFood.origin}</span>
 
 
-                        <div className="mb-3">
-                            <span className="h3 fw-bold text-primary me-2">{singleFood.pricePerKg}€ al Kg</span>
+                            <div className="my-3">
+                                <span className=" detail-price h3 fw-bold">{singleFood.pricePerKg}€ al Kg</span>
+                            </div>
+
+                            <p className="text-secondary mb-4">{singleFood.description}</p>
+
+                            <table className="table table-striped detail-table mb-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Valori nutrizionali</th>
+                                        <th scope="col">100 grammi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Calorie</th>
+                                        <td>{singleFood.calories} kcal</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Grassi</th>
+                                        <td>{singleFood.fat} g</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vegano</th>
+                                        <td>
+                                            <i className={singleFood.vegan ? "bi bi-check2" : "bi bi-x-lg"}></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Senza glutine</th>
+                                        <td>
+                                            <i className={singleFood.glutenFree ? "bi bi-check2" : "bi bi-x-lg"}></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button onClick={() => toggleFavorite({ id: singleFood.id, title: singleFood.title, category: singleFood.category })} className="btn btn-outline-primary btn-favorite btn-lg px-4 w-100 w-sm-auto">
+                                { favoriteFoods.some(el => el.id === singleFood.id) ?
+                                <> <i className="bi bi-heart-fill me-1"></i> Rimuovi dai preferiti </> :
+                                <> <i className="bi bi-heart me-1"></i> Aggiungi ai preferiti </>}
+                            </button>
                         </div>
-
-                        <p className="text-secondary mb-4">{singleFood.description}</p>
-
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Valori nutrizionali</th>
-                                    <th scope="col">100 grammi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Calorie</th>
-                                    <td>{singleFood.calories} kcal</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Grassi</th>
-                                    <td>{singleFood.fat} g</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vegano</th>
-                                    <td>
-                                        <i className={singleFood.vegan ? "bi bi-check2" : "bi bi-x-lg"}></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Senza glutine</th>
-                                    <td>
-                                        <i className={singleFood.glutenFree ? "bi bi-check2" : "bi bi-x-lg"}></i>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <button onClick={() => toggleFavorite({ id: singleFood.id, title: singleFood.title, category: singleFood.category })} className="btn btn-outline-secondary btn-lg px-4 w-100 w-sm-auto">
-                             { favoriteFoods.some(el => el.id === singleFood.id) ?
-                             <> <i className="bi bi-heart-fill me-1"></i> Rimuovi dai preferiti </> :
-                             <> <i className="bi bi-heart me-1"></i> Aggiungi ai preferiti </>}
-                        </button>
 
                     </div>
                 </div>
