@@ -1,11 +1,18 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { createContext } from "react";
 
 const FavoritesContext = createContext()
 
 export function FavoriteProvider({children}) {
 
-    const [favoriteFoods, setFavoriteFoods] = useState([])
+    const [favoriteFoods, setFavoriteFoods] = useState(() => {
+        const saved = localStorage.getItem("favoriteFoods")
+        return saved ? JSON.parse(saved) : []
+    })
+
+    useEffect(() => {
+        localStorage.setItem("favoriteFoods", JSON.stringify(favoriteFoods))
+    }, [favoriteFoods])
     
         function toggleFavorite(food) {
             const foodFavorite = favoriteFoods.some(f => f.id === food.id)
