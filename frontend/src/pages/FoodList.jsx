@@ -1,5 +1,16 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import FoodCardList from "../components/FoodCardList"
+
+
+function debounce(callback, delay) {
+        let timer
+        return value => {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                callback(value)
+            }, delay)
+        }
+    }
 
 export default function FoodList() {
 
@@ -8,6 +19,9 @@ export default function FoodList() {
     const [categorySearch, setCategorySearch] = useState("")
     const [sortField, setSortField] = useState("title")
     const [sortDirection, setSortDirection] = useState(1)
+
+
+    const debouncedSetSearch = useCallback(debounce(setSearch, 500), [])
 
     // Chiamata ai dati nel backend
     useEffect(() => {
@@ -30,6 +44,8 @@ export default function FoodList() {
 
         fetchFood()
     }, [])
+
+
 
     // Array filtrato per ricerca per titolo, per categoria
     const filteredFoods =
@@ -66,8 +82,7 @@ export default function FoodList() {
                         <label className="form-label">Cerca per titolo</label>
                         <input className="form-control"
                         type="text"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e) => debouncedSetSearch(e.target.value)}
                         placeholder="Es. Mela"
                         />
                     </div>
