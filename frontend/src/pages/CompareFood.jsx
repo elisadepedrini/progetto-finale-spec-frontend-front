@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useFavorites } from "../contexts/FavoritesContext";
+import { useNavigate } from "react-router";
 
 export default function CompareFood() {
 
-    const { favoriteFoods, toggleFavorite } = useFavorites()
+    const navigate = useNavigate()
     const [foodsCompare, setFoodsCompare] = useState([])
     const [firstId, setFirstId] = useState("")
     const [secondId, setSecondId] = useState("")
@@ -26,11 +26,13 @@ export default function CompareFood() {
 
             } catch (error) {
                 console.error(error)
+                navigate("/not-found")
             }
         }
 
         fetchFood()
     }, [])
+
 
 
     useEffect(() => {
@@ -53,6 +55,7 @@ export default function CompareFood() {
 
             } catch (error) {
                 console.error(error)
+                navigate("/not-found")
             }
         }
 
@@ -79,18 +82,17 @@ export default function CompareFood() {
 
             } catch (error) {
                 console.error(error)
+                navigate("/not-found")
             }
         }
 
         fetchFood()
     }, [secondId])
 
-    console.log(foodsCompare);
-    console.log(firstId);
-    console.log(secondId);
 
-
-
+    if(foodsCompare.length === 0) {
+        return <h4>Caricamento...</h4>
+    }
 
     return (
         <>

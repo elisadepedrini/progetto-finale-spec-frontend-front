@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import FoodCardList from "../components/FoodCardList"
+import { useNavigate } from "react-router"
 
 
 function debounce(callback, delay) {
@@ -14,6 +15,7 @@ function debounce(callback, delay) {
 
 export default function FoodList() {
 
+    const navigate = useNavigate()
     const [foods, setFoods] = useState([])
     const [search, setSearch] = useState("")
     const [categorySearch, setCategorySearch] = useState("")
@@ -39,11 +41,16 @@ export default function FoodList() {
 
             } catch(error) {
                 console.error(error)
+                navigate("/not-found")
             }
         }
 
         fetchFood()
     }, [])
+
+    if(foods.length === 0) {
+        return <h4>Caricamento...</h4>
+    }
 
 
 
